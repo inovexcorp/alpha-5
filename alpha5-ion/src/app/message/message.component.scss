@@ -67,3 +67,16 @@ ion-footer ion-title {
   font-size: 11px;
   font-weight: normal;
 }
+
+#file {
+  opacity: 0; 
+  border: none;
+  border-radius: 3px;
+  background: grey;
+  position: absolute;
+  left: 0px;    
+  width: 100%;
+  top: 0px;
+  height: 100%;
+  cursor: pointer;
+}
