@@ -1,7 +1,0 @@
-{
-  "name": "alpha5-ion",
-  "integrations": {
-    "capacitor": {}
-  },
-  "type": "angular"
-}
