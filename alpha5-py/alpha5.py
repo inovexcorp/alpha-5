@@ -59,25 +59,25 @@ manualData = extract_group_data(manualArg)
 
 
 
-# logic for getting the contents of the <custom_item> tags
 def fetch_nested_item_content(xml_data):
-    item_pattern = r'<custom_item>(.*?)</custom_item>'
+    item_pattern = r'<(custom_item|item)>(.*?)</\1>'
     
     def extract_items(data):
         items = re.findall(item_pattern, data, re.DOTALL)
 
         # recursively extract content
         nested_items = []
-        for item in items:
-            nested_items.append(item.strip())
-            nested_items.extend(extract_items(item))
+        for tag, content in items:
+            nested_items.append(content.strip())
+            nested_items.extend(extract_items(content))
 
         return nested_items
     return extract_items(xml_data)
 
 with open(auditArg, "r") as xml_file:
     stig = xml_file.read()
-# items is an array of the contents of every <custom_item> tag
+
+# items is an array of the contents of every <custom_item> and <item> tag
 items = fetch_nested_item_content(stig)
 
 
