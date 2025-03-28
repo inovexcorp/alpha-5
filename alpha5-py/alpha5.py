@@ -48,7 +48,7 @@ def extract_group_data(xml_file):
                 'Group Title': group_title,
                 'Rule ID': rule_id,
                 'Severity': severity,
-                'Version': version,
+                'Version (Stig-ID)': version,
                 'Rule Title': rule_title
             })
 
@@ -89,10 +89,10 @@ cat_pattern = r'(?<=CAT\|)(.*?)(?=,)'
 stig_pattern = r'(?<=STIG-ID\|)(.*?)(?=,)'
 for manualEntry in manualData:
     for auditEntry in items:
-        if re.search(stig_pattern, auditEntry):
+        tempVar = re.search(stig_pattern, auditEntry).group(1) if re.search(stig_pattern, auditEntry) else None
+        if tempVar == manualEntry['Version (Stig-ID)']:
             # Add new keys directly to the manualEntry dictionary
             manualEntry['CAT'] = re.search(cat_pattern, auditEntry).group(1) if re.search(cat_pattern, auditEntry) else None
-            manualEntry['STIG-ID'] = re.search(stig_pattern, auditEntry).group(1) if re.search(stig_pattern, auditEntry) else None
             manualEntry['800-53'] = re.search(eight_pattern, auditEntry).group(1) if re.search(eight_pattern, auditEntry) else None
             finalArr.append(manualEntry)
 
