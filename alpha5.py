@@ -100,7 +100,7 @@ for manualEntry in manualData:
         if auditEntry['STIG'] == manualEntry['Version (Stig-ID)']:
             # Add new keys directly to the manualEntry dictionary
             manualEntry['CAT'] = auditEntry['CAT']
-            manualEntry['800-53'] = auditEntry['CAT']
+            manualEntry['800-53'] = auditEntry['800-53']
             finalArr.append(manualEntry)
 
 # then convert finalArr into the csv file
