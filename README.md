@@ -54,7 +54,7 @@ If you don't already have Python 3 installed, download it here: [https://www.pyt
 #### Usage:
 
 ```bash
-python3 alpha5.py --audit_file path/to/file.audit --manual_file path/to/file.xml --output_file [optional_output.csv]
+python3 alpha5.py --audit_file path/to/file.audit --manual_file path/to/file.xml --output_file [optional_output_file_path.csv]
 ``` 
 
 #### Example:
@@ -81,7 +81,7 @@ A CSV file (`output.csv` by default) listing all matched and unmatched STIG item
 #### Usage:
 
 ```bash
-python3 atlas.py --input path/to/file.nessus --output [optional_output.csv]
+python3 atlas.py --input path/to/file.nessus --summary [optional_summary_file_path.csv] --checklist [optional_checklist_file_path.csv]
 ``` 
 
 #### Example:
@@ -93,12 +93,14 @@ python3 atlas.py --input PLAIDRANGE-UNC_SERVER2022_DISA_STIG_20250404.nessus
 
 -   `file.nessus` – Nessus result file from a completed STIG scan
     
--   `optional_output.csv` – Optional name for the output file (defaults to `output.csv`)
+-   `optional_summary_file_path.csv` – Optional name for the summary file (defaults to `summary.csv`)
+
+-   `optional_checklist_file_path.csv` – Optional name for the checklist file (defaults to `checklist.csv`)
     
 
 #### Output:
 
-A CSV file listing each check from the scan, its result (pass/fail), and the recommended fix.
+Two CSV files: `summary.csv` listing each NIST ID from the scan and which boxes failed and `checklist.csv` which provides a list of every check performed along with its description and the actual result if available, as well as the recommended solution.
 
 ----------
 
@@ -110,8 +112,6 @@ This repository includes example files in the `sample files/` directory that you
     
 -   `U_RHEL_9_STIG_V2R3_Manual-xccdf.xml`
     
--   `PLAIDRANGE-UNC_SERVER2022_DISA_STIG_20250404.nessus`
-
 ----------
 
 ## 🛠 Troubleshooting
